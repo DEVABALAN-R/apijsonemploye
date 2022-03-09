@@ -1,0 +1,20 @@
+{
+  "posts": [
+    {
+      "id": 6,
+      "name": "abiram",
+      "email": "abiram@gmail.com",
+      "mobile": "54298576"
+    },
+    {
+      "id": 8,
+      "name": "Ravi",
+      "email": "ravi@gmail.com",
+      "mobile": "1234321"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

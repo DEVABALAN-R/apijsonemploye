@@ -1,0 +1,67 @@
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+        <h1>HELLO</h1>
+        <div class="d-flex">
+            <button (click)="whenclickadd()" style="margin-left: 50%;" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" style="transform: translate(10%,-0%);">Add Employee</button>
+        </div>
+    </div>
+</nav>
+
+<table class="table mt-3" >
+    <thead>
+        <tr>
+            <th scope="col">Employee ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email ID</th>
+            <th scope="col">mobile</th>
+            <th scope="col">action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of employeeData">
+            <td>{{row.id}}</td>
+           <td>{{ row.name }}</td>
+            <td>{{row.email}}</td>
+            <td>{{row.mobile}}</td>
+          <td><button class="btn btn-info" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"  (click)="onEdit(row)">edit</button>&nbsp;
+          <button class="btn btn-danger mx-3" (click)="deleteEmployeeDetails(row)">delete</button></td>
+         </tr>
+      </tbody>
+</table>
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button id="cancel" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  
+            <form [formGroup]="formValue">
+                
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Name</label>
+                  <input type="text" formControlName="name"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ngModel>
+
+                
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Email ID</label>
+                    <input type="email" formControlName="email"  class="form-control" id="exampleInputPassword2" ngMode>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">mobile</label>
+                    <input type="email" formControlName="mobile"  class="form-control" id="exampleInputPassword2" ngMode>
+                  </div>
+                       </div>
+                       <button type="button" class="btn btn-primary" *ngIf="showadd" (click)="postEmployeeDetails()">add</button>
+                       <button type="button" class="btn btn-primary" *ngIf="showupdate" (click)="updateEmployeeDetails()">update</button>
+                      </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
