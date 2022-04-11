@@ -26,14 +26,14 @@ export class EmpdashboardComponent implements OnInit {
       mobile :['']
                  
   })
-  this. getEmployeeDetails();
+this. getEmployeeDetails();
 }
 postEmployeeDetails()
     {
          this.employeeModelObj.name = this.formValue.value.name;
          this.employeeModelObj.email = this.formValue.value.email;
          this.employeeModelObj.mobile = this.formValue.value.mobile;
-
+   
          this.api.postEmployee(this.employeeModelObj)
          .subscribe
          (res=>
@@ -44,15 +44,14 @@ postEmployeeDetails()
                   ref?.click();
                   this.formValue.reset();
                   this. getEmployeeDetails();
-                 },err=>
-                          {
-                          alert("error");
-                           }
+                 },err=>{
+                   alert(err);
+                 }
           )
      }
      getEmployeeDetails()
      {
-       this.api.getEmployee()
+       this.api.getEmployeeList()
        .subscribe
        (res=>
          {
@@ -78,16 +77,17 @@ postEmployeeDetails()
         this.showadd = false;
         this.showupdate = true; 
         
-        this.employeeModelObj.id=row.id;
+        this.employeeModelObj._userId=row.id;
         this.formValue.controls['name'].setValue(row.name);
         this.formValue.controls['email'].setValue(row.email);
         this.formValue.controls['mobile'].setValue(row.mobile);
        }
-    updateEmployeeDetails(){
+   
+       updateEmployeeDetails(){
         this.employeeModelObj.name = this.formValue.value.name;
         this.employeeModelObj.email = this.formValue.value.email;
         this.employeeModelObj.mobile = this.formValue.value.mobile;
-        this.api.updateEmployee(this.employeeModelObj.id,this.employeeModelObj)
+        this.api.putEmployee(this.employeeModelObj)
         .subscribe(res=>
           {
             alert("updated");

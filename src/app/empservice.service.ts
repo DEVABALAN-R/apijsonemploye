@@ -1,33 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { EmployeeModel } from './empdashboard/empdashboard.model';
+EmployeeModel
 
 @Injectable({
   providedIn: 'root'
 })
-export class EmpserviceService {
+export class EmpserviceService{
+  readonly baseURL = 'http://localhost:3000/lists';
 
   constructor(private http: HttpClient) { }
 
-                 getEmployee()
-                {
-                return this.http.get<any>('http://localhost:3000/posts');
-                
-                }           
-                public postEmployee(data:any)
-                {
-                return this.http.post<any>('http://localhost:3000/posts',data);
-                
-                }
+  getEmployeeList() {
+    return this.http.get(this.baseURL);
+  }
+  
+  postEmployee(emp: EmployeeModel) {
+    return this.http.post(this.baseURL, emp);
+  }
+ putEmployee(emp: EmployeeModel) {
+    return this.http.patch(this.baseURL + `/${emp._userId}`, emp);
+  }
 
-                 deleteEmployee(id:number)
-                 {
-                   return this.http.delete<any>('http://localhost:3000/posts/'+id);
-                  
-                 }      
-                 updateEmployee(id:number,data:any)
-                 {
-                   return this.http.put<any>('http://localhost:3000/posts/'+id,data);
-                 
-                 }
-              }
-                       
+  deleteEmployee(_id: string) {
+    return this.http.delete(this.baseURL + `/${_id}`);
+  }
+
+}

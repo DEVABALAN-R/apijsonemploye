@@ -1,6 +1,14 @@
 export class EmployeeModel{
-    id : number = 0;
-    name : string='';
-    email : string ='';
-    mobile : string ='';
-                          }       
+    constructor(_userId='',name='',email='',mobile='')
+    {
+        this._userId=_userId;
+        this.name=name;
+        this.email=email;
+        this.mobile=mobile;
+    
+    }   
+    _userId:string;
+name : string;
+email : string;
+mobile : string;
+                        }    
